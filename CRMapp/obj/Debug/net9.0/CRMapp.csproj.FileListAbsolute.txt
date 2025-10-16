@@ -1,0 +1,14 @@
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\bin\Debug\net9.0\CRMapp.exe
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\bin\Debug\net9.0\CRMapp.deps.json
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\bin\Debug\net9.0\CRMapp.runtimeconfig.json
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\bin\Debug\net9.0\CRMapp.dll
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\bin\Debug\net9.0\CRMapp.pdb
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\CRMapp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\CRMapp.AssemblyInfoInputs.cache
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\CRMapp.AssemblyInfo.cs
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\CRMapp.csproj.CoreCompileInputs.cache
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\CRMapp.dll
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\refint\CRMapp.dll
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\CRMapp.pdb
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\CRMapp.genruntimeconfig.cache
+C:\Users\julia\OneDrive\Desktop\SistemaCRM\CRMapp\obj\Debug\net9.0\ref\CRMapp.dll
