@@ -1,21 +1,26 @@
 namespace CRMApp
 {
-    internal class Oportunidade
+    public class Oportunidade
     {
+        private static int contador = 1;
+        public int Id { get; set; }
         public string Descricao { get; set; }
-        public decimal Valor { get; set; }
+        public double ValorEstimado { get; set; }
+        public string Estagio { get; set; } // Quente / Morno / Frio
         public Cliente ClienteRelacionado { get; set; }
 
-        public Oportunidade(string descricao, decimal valor, Cliente cliente)
+        public Oportunidade(string descricao, double valor, string estagio, Cliente cliente)
         {
+            Id = contador++;
             Descricao = descricao;
-            Valor = valor;
+            ValorEstimado = valor;
+            Estagio = estagio;
             ClienteRelacionado = cliente;
         }
 
         public override string ToString()
         {
-            return $"{Descricao} - R${Valor} - Cliente: {ClienteRelacionado.Nome}";
+            return $"ID: {Id} | Cliente: {ClienteRelacionado.Nome} | Descrição: {Descricao} | Valor: R${ValorEstimado:F2} | Estágio: {Estagio}";
         }
     }
 }

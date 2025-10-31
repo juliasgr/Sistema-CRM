@@ -1,21 +1,28 @@
+using System;
+
 namespace CRMApp
 {
-    internal class Atividade
+    public class Atividade
     {
-        public string Tipo { get; set; }
+        private static int contador = 1;
+        public int Id { get; set; }
+        public string Tipo { get; set; } // Reunião, Ligação, E-mail, Follow-up...
         public string Descricao { get; set; }
+        public DateTime Data { get; set; }
         public Cliente ClienteRelacionado { get; set; }
 
-        public Atividade(string tipo, string descricao, Cliente cliente)
+        public Atividade(string tipo, string descricao, DateTime data, Cliente cliente)
         {
+            Id = contador++;
             Tipo = tipo;
             Descricao = descricao;
+            Data = data;
             ClienteRelacionado = cliente;
         }
 
         public override string ToString()
         {
-            return $"{Tipo} - {Descricao} - Cliente: {ClienteRelacionado.Nome}";
+            return $"ID: {Id} | {Data:g} | {Tipo} | Cliente: {ClienteRelacionado.Nome} | {Descricao}";
         }
     }
 }
