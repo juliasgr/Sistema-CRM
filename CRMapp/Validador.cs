@@ -8,7 +8,6 @@ namespace CRMApp
         {
             if (string.IsNullOrWhiteSpace(nome))
                 return false;
-            // letras (inclui acentos) e espaços
             return Regex.IsMatch(nome, @"^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$");
         }
 

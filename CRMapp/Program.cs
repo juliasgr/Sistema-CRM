@@ -37,8 +37,6 @@ namespace CRMApp
 
             } while (opcaoMain != 4);
         }
-
-        // ---------- CLIENTE ----------
         static void MenuCliente(CRM crm)
         {
             int op;
@@ -82,28 +80,28 @@ namespace CRMApp
             {
                 Console.Write("Nome: ");
                 nome = Console.ReadLine() ?? "";
-                if (!Validador.ValidarNome(nome)) Console.WriteLine("❌ Nome inválido! Use apenas letras e espaços.");
+                if (!Validador.ValidarNome(nome)) Console.WriteLine("Nome inválido! Use apenas letras e espaços.");
             } while (!Validador.ValidarNome(nome));
 
             do
             {
                 Console.Write("E-mail: ");
                 email = Console.ReadLine() ?? "";
-                if (!Validador.ValidarEmail(email)) Console.WriteLine("❌ E-mail inválido! Use o formato exemplo@dominio.com.");
+                if (!Validador.ValidarEmail(email)) Console.WriteLine("E-mail inválido! Use o formato exemplo@dominio.com.");
             } while (!Validador.ValidarEmail(email));
 
             do
             {
                 Console.Write("Telefone (11 dígitos): ");
                 telefone = Console.ReadLine() ?? "";
-                if (!Validador.ValidarTelefone(telefone)) Console.WriteLine("❌ Telefone inválido! Deve conter 11 números.");
+                if (!Validador.ValidarTelefone(telefone)) Console.WriteLine("Telefone inválido! Deve conter 11 números.");
             } while (!Validador.ValidarTelefone(telefone));
 
             do
             {
                 Console.Write("CPF (11 dígitos): ");
                 cpf = Console.ReadLine() ?? "";
-                if (!Validador.ValidarCPF(cpf)) Console.WriteLine("❌ CPF inválido! Deve conter 11 números.");
+                if (!Validador.ValidarCPF(cpf)) Console.WriteLine("CPF inválido! Deve conter 11 números.");
             } while (!Validador.ValidarCPF(cpf));
 
             crm.AdicionarCliente(new Cliente(nome, email, telefone, cpf));
@@ -116,7 +114,7 @@ namespace CRMApp
             var cliente = crm.BuscarCliente(cpf);
             if (cliente == null)
             {
-                Console.WriteLine("❌ Cliente não encontrado!");
+                Console.WriteLine("Cliente não encontrado!");
                 return;
             }
 
@@ -125,7 +123,7 @@ namespace CRMApp
             string? nome = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(nome) && !Validador.ValidarNome(nome))
             {
-                Console.WriteLine("❌ Nome inválido! Edição cancelada.");
+                Console.WriteLine("Nome inválido! Edição cancelada.");
                 return;
             }
 
@@ -133,7 +131,7 @@ namespace CRMApp
             string? email = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(email) && !Validador.ValidarEmail(email))
             {
-                Console.WriteLine("❌ E-mail inválido! Edição cancelada.");
+                Console.WriteLine("E-mail inválido! Edição cancelada.");
                 return;
             }
 
@@ -141,14 +139,13 @@ namespace CRMApp
             string? telefone = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(telefone) && !Validador.ValidarTelefone(telefone))
             {
-                Console.WriteLine("❌ Telefone inválido! Edição cancelada.");
+                Console.WriteLine("Telefone inválido! Edição cancelada.");
                 return;
             }
 
             crm.EditarCliente(cpf, string.IsNullOrWhiteSpace(nome) ? null : nome, string.IsNullOrWhiteSpace(email) ? null : email, string.IsNullOrWhiteSpace(telefone) ? null : telefone);
         }
 
-        // ---------- OPORTUNIDADES ----------
         static void MenuOportunidade(CRM crm)
         {
             int op;
@@ -191,7 +188,7 @@ namespace CRMApp
             var cliente = crm.BuscarCliente(cpfCli);
             if (cliente == null)
             {
-                Console.WriteLine("❌ Cliente não encontrado!");
+                Console.WriteLine("Cliente não encontrado!");
                 return;
             }
 
@@ -204,7 +201,7 @@ namespace CRMApp
                 Console.Write("Valor estimado (maior que 0): ");
                 var raw = Console.ReadLine() ?? "";
                 if (!double.TryParse(raw, NumberStyles.Any, CultureInfo.InvariantCulture, out valor) || valor <= 0)
-                    Console.WriteLine("❌ Valor inválido. Informe um número maior que zero.");
+                    Console.WriteLine("Valor inválido. Informe um número maior que zero.");
                 else break;
             } while (true);
 
@@ -218,7 +215,7 @@ namespace CRMApp
                       estagio.Equals("Morno", StringComparison.OrdinalIgnoreCase) ||
                       estagio.Equals("Frio", StringComparison.OrdinalIgnoreCase)))
                 {
-                    Console.WriteLine("❌ Estágio inválido. Use Quente, Morno ou Frio.");
+                    Console.WriteLine("Estágio inválido. Use Quente, Morno ou Frio.");
                 }
                 else break;
             } while (true);
@@ -244,7 +241,7 @@ namespace CRMApp
             {
                 if (!double.TryParse(rawValor, NumberStyles.Any, CultureInfo.InvariantCulture, out double valParsed) || valParsed <= 0)
                 {
-                    Console.WriteLine("❌ Valor inválido. Edição cancelada para o valor.");
+                    Console.WriteLine("Valor inválido. Edição cancelada para o valor.");
                 }
                 else novoValor = valParsed;
             }
@@ -256,14 +253,13 @@ namespace CRMApp
                   est.Equals("Morno", StringComparison.OrdinalIgnoreCase) ||
                   est.Equals("Frio", StringComparison.OrdinalIgnoreCase)))
             {
-                Console.WriteLine("❌ Estágio inválido. Edição cancelada para estágio.");
+                Console.WriteLine("Estágio inválido. Edição cancelada para estágio.");
                 est = null;
             }
 
             crm.EditarOportunidade(id, string.IsNullOrWhiteSpace(desc) ? null : desc, novoValor, string.IsNullOrWhiteSpace(est) ? null : est);
         }
 
-        // ---------- ATIVIDADES ----------
         static void MenuAtividade(CRM crm)
         {
             int op;
@@ -306,7 +302,7 @@ namespace CRMApp
             var cliente = crm.BuscarCliente(cpf);
             if (cliente == null)
             {
-                Console.WriteLine("❌ Cliente não encontrado!");
+                Console.WriteLine("Cliente não encontrado!");
                 return;
             }
 

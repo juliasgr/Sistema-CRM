@@ -10,16 +10,15 @@ namespace CRMApp
         public List<Oportunidade> Oportunidades { get; set; } = new();
         public List<Atividade> Atividades { get; set; } = new();
 
-        // ======= CLIENTES =======
         public void AdicionarCliente(Cliente c)
         {
             if (Clientes.Any(x => x.CPF == c.CPF))
             {
-                Console.WriteLine("❌ Já existe um cliente com esse CPF!");
+                Console.WriteLine("Já existe um cliente com esse CPF!");
                 return;
             }
             Clientes.Add(c);
-            Console.WriteLine("✅ Cliente adicionado com sucesso!");
+            Console.WriteLine("Cliente adicionado com sucesso!");
         }
 
         public void ListarClientes()
@@ -44,7 +43,7 @@ namespace CRMApp
             var c = BuscarCliente(cpf);
             if (c == null)
             {
-                Console.WriteLine("❌ Cliente não encontrado!");
+                Console.WriteLine("Cliente não encontrado!");
                 return;
             }
 
@@ -55,7 +54,7 @@ namespace CRMApp
             if (!string.IsNullOrWhiteSpace(novoTelefone))
                 c.Telefone = novoTelefone;
 
-            Console.WriteLine("✅ Cliente atualizado!");
+            Console.WriteLine("Cliente atualizado!");
         }
 
         public void RemoverCliente(string cpf)
@@ -63,27 +62,25 @@ namespace CRMApp
             var c = BuscarCliente(cpf);
             if (c == null)
             {
-                Console.WriteLine("❌ Cliente não encontrado!");
+                Console.WriteLine("Cliente não encontrado!");
                 return;
             }
 
-            // remover também oportunidades e atividades ligadas
             Oportunidades.RemoveAll(o => o.ClienteRelacionado.CPF == cpf);
             Atividades.RemoveAll(a => a.ClienteRelacionado.CPF == cpf);
             Clientes.Remove(c);
-            Console.WriteLine("🗑️ Cliente e registros vinculados removidos.");
+            Console.WriteLine("Cliente e registros vinculados removidos.");
         }
 
-        // ======= OPORTUNIDADES =======
         public void AdicionarOportunidade(Oportunidade o)
         {
             if (o.ValorEstimado <= 0)
             {
-                Console.WriteLine("❌ Valor da oportunidade precisa ser maior que zero!");
+                Console.WriteLine("Valor da oportunidade precisa ser maior que zero!");
                 return;
             }
             Oportunidades.Add(o);
-            Console.WriteLine("✅ Oportunidade adicionada!");
+            Console.WriteLine("Oportunidade adicionada!");
         }
 
         public void ListarOportunidades()
@@ -123,7 +120,7 @@ namespace CRMApp
             var o = Oportunidades.FirstOrDefault(x => x.Id == id);
             if (o == null)
             {
-                Console.WriteLine("❌ Oportunidade não encontrada!");
+                Console.WriteLine("Oportunidade não encontrada!");
                 return;
             }
 
@@ -132,13 +129,13 @@ namespace CRMApp
             {
                 if (novoValor.Value <= 0)
                 {
-                    Console.WriteLine("❌ O valor precisa ser maior que zero. Edição cancelada para o valor.");
+                    Console.WriteLine("O valor precisa ser maior que zero. Edição cancelada para o valor.");
                 }
                 else o.ValorEstimado = novoValor.Value;
             }
             if (!string.IsNullOrWhiteSpace(novoEstagio)) o.Estagio = novoEstagio;
 
-            Console.WriteLine("✅ Oportunidade atualizada!");
+            Console.WriteLine("Oportunidade atualizada!");
         }
 
         public void RemoverOportunidade(int id)
@@ -146,18 +143,17 @@ namespace CRMApp
             var o = Oportunidades.FirstOrDefault(x => x.Id == id);
             if (o == null)
             {
-                Console.WriteLine("❌ Oportunidade não encontrada!");
+                Console.WriteLine("Oportunidade não encontrada!");
                 return;
             }
             Oportunidades.Remove(o);
-            Console.WriteLine("🗑️ Oportunidade removida!");
+            Console.WriteLine("Oportunidade removida!");
         }
 
-        // ======= ATIVIDADES =======
         public void AdicionarAtividade(Atividade a)
         {
             Atividades.Add(a);
-            Console.WriteLine("✅ Atividade registrada!");
+            Console.WriteLine("Atividade registrada!");
         }
 
         public void ListarAtividades()
@@ -176,7 +172,7 @@ namespace CRMApp
             var a = Atividades.FirstOrDefault(x => x.Id == id);
             if (a == null)
             {
-                Console.WriteLine("❌ Atividade não encontrada!");
+                Console.WriteLine("Atividade não encontrada!");
                 return;
             }
 
@@ -192,11 +188,11 @@ namespace CRMApp
             var a = Atividades.FirstOrDefault(x => x.Id == id);
             if (a == null)
             {
-                Console.WriteLine("❌ Atividade não encontrada!");
+                Console.WriteLine("Atividade não encontrada!");
                 return;
             }
             Atividades.Remove(a);
-            Console.WriteLine("🗑️ Atividade removida!");
+            Console.WriteLine("Atividade removida!");
         }
     }
 }
