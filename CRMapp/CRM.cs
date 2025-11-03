@@ -12,11 +12,12 @@ namespace CRMApp
 
         public void AdicionarCliente(Cliente c)
         {
-            if (Clientes.Any(x => x.CPF == c.CPF))
+            if (Clientes.Any(x => x.Documento == c.Documento))
             {
-                Console.WriteLine("Já existe um cliente com esse CPF!");
+                Console.WriteLine("Já existe um cliente com esse CPF ou CNPJ!");
                 return;
             }
+
             Clientes.Add(c);
             Console.WriteLine("Cliente adicionado com sucesso!");
         }
@@ -28,19 +29,21 @@ namespace CRMApp
                 Console.WriteLine("Nenhum cliente cadastrado.");
                 return;
             }
+
             Console.WriteLine("\n--- Clientes ---");
-            foreach (var c in Clientes) Console.WriteLine(c);
+            foreach (var c in Clientes)
+                Console.WriteLine(c);
         }
 
-        public Cliente? BuscarCliente(string cpf)
+        public Cliente? BuscarCliente(string documento)
         {
-            if (string.IsNullOrWhiteSpace(cpf)) return null;
-            return Clientes.FirstOrDefault(x => x.CPF == cpf);
+            if (string.IsNullOrWhiteSpace(documento)) return null;
+            return Clientes.FirstOrDefault(x => x.Documento == documento);
         }
 
-        public void EditarCliente(string cpf, string? novoNome, string? novoEmail, string? novoTelefone)
+        public void EditarCliente(string documento, string? novoNome, string? novoEmail, string? novoTelefone)
         {
-            var c = BuscarCliente(cpf);
+            var c = BuscarCliente(documento);
             if (c == null)
             {
                 Console.WriteLine("Cliente não encontrado!");
@@ -57,18 +60,19 @@ namespace CRMApp
             Console.WriteLine("Cliente atualizado!");
         }
 
-        public void RemoverCliente(string cpf)
+        public void RemoverCliente(string documento)
         {
-            var c = BuscarCliente(cpf);
+            var c = BuscarCliente(documento);
             if (c == null)
             {
                 Console.WriteLine("Cliente não encontrado!");
                 return;
             }
 
-            Oportunidades.RemoveAll(o => o.ClienteRelacionado.CPF == cpf);
-            Atividades.RemoveAll(a => a.ClienteRelacionado.CPF == cpf);
+            Oportunidades.RemoveAll(o => o.ClienteRelacionado.Documento == documento);
+            Atividades.RemoveAll(a => a.ClienteRelacionado.Documento == documento);
             Clientes.Remove(c);
+
             Console.WriteLine("Cliente e registros vinculados removidos.");
         }
 
@@ -76,9 +80,10 @@ namespace CRMApp
         {
             if (o.ValorEstimado <= 0)
             {
-                Console.WriteLine("Valor da oportunidade precisa ser maior que zero!");
+                Console.WriteLine("O valor da oportunidade deve ser maior que zero!");
                 return;
             }
+
             Oportunidades.Add(o);
             Console.WriteLine("Oportunidade adicionada!");
         }
@@ -90,8 +95,10 @@ namespace CRMApp
                 Console.WriteLine("Nenhuma oportunidade registrada.");
                 return;
             }
+
             Console.WriteLine("\n--- Oportunidades ---");
-            foreach (var o in Oportunidades) Console.WriteLine(o);
+            foreach (var o in Oportunidades)
+                Console.WriteLine(o);
         }
 
         public void FiltrarOportunidadesPorEstagio(string estagio)
@@ -101,6 +108,7 @@ namespace CRMApp
                 Console.WriteLine("Estágio inválido.");
                 return;
             }
+
             var filtradas = Oportunidades
                 .Where(x => x.Estagio.Equals(estagio, StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -112,7 +120,8 @@ namespace CRMApp
             }
 
             Console.WriteLine($"\n--- Oportunidades {estagio.ToUpper()} ---");
-            foreach (var o in filtradas) Console.WriteLine(o);
+            foreach (var o in filtradas)
+                Console.WriteLine(o);
         }
 
         public void EditarOportunidade(int id, string? novaDesc, double? novoValor, string? novoEstagio)
@@ -124,16 +133,19 @@ namespace CRMApp
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(novaDesc)) o.Descricao = novaDesc;
+            if (!string.IsNullOrWhiteSpace(novaDesc))
+                o.Descricao = novaDesc;
+
             if (novoValor.HasValue)
             {
                 if (novoValor.Value <= 0)
-                {
                     Console.WriteLine("O valor precisa ser maior que zero. Edição cancelada para o valor.");
-                }
-                else o.ValorEstimado = novoValor.Value;
+                else
+                    o.ValorEstimado = novoValor.Value;
             }
-            if (!string.IsNullOrWhiteSpace(novoEstagio)) o.Estagio = novoEstagio;
+
+            if (!string.IsNullOrWhiteSpace(novoEstagio))
+                o.Estagio = novoEstagio;
 
             Console.WriteLine("Oportunidade atualizada!");
         }
@@ -146,6 +158,7 @@ namespace CRMApp
                 Console.WriteLine("Oportunidade não encontrada!");
                 return;
             }
+
             Oportunidades.Remove(o);
             Console.WriteLine("Oportunidade removida!");
         }
@@ -163,8 +176,10 @@ namespace CRMApp
                 Console.WriteLine("Nenhuma atividade registrada.");
                 return;
             }
+
             Console.WriteLine("\n--- Atividades ---");
-            foreach (var a in Atividades) Console.WriteLine(a);
+            foreach (var a in Atividades)
+                Console.WriteLine(a);
         }
 
         public void EditarAtividade(int id, string? novoTipo, string? novaDescricao, DateTime? novaData)
@@ -176,9 +191,12 @@ namespace CRMApp
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(novoTipo)) a.Tipo = novoTipo;
-            if (!string.IsNullOrWhiteSpace(novaDescricao)) a.Descricao = novaDescricao;
-            if (novaData.HasValue) a.Data = novaData.Value;
+            if (!string.IsNullOrWhiteSpace(novoTipo))
+                a.Tipo = novoTipo;
+            if (!string.IsNullOrWhiteSpace(novaDescricao))
+                a.Descricao = novaDescricao;
+            if (novaData.HasValue)
+                a.Data = novaData.Value;
 
             Console.WriteLine("✅ Atividade atualizada!");
         }
@@ -188,11 +206,12 @@ namespace CRMApp
             var a = Atividades.FirstOrDefault(x => x.Id == id);
             if (a == null)
             {
-                Console.WriteLine("Atividade não encontrada!");
+                Console.WriteLine("❌ Atividade não encontrada!");
                 return;
             }
+
             Atividades.Remove(a);
-            Console.WriteLine("Atividade removida!");
+            Console.WriteLine("✅ Atividade removida!");
         }
     }
 }

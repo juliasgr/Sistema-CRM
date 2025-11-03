@@ -74,37 +74,41 @@ namespace CRMApp
 
         static void CadastrarCliente(CRM crm)
         {
-            string nome, email, telefone, cpf;
+            string nome, email, telefone, documento;
 
             do
             {
                 Console.Write("Nome: ");
                 nome = Console.ReadLine() ?? "";
-                if (!Validador.ValidarNome(nome)) Console.WriteLine("Nome inválido! Use apenas letras e espaços.");
+                if (!Validador.ValidarNome(nome))
+                    Console.WriteLine("Nome inválido! Use apenas letras e espaços.");
             } while (!Validador.ValidarNome(nome));
 
             do
             {
                 Console.Write("E-mail: ");
                 email = Console.ReadLine() ?? "";
-                if (!Validador.ValidarEmail(email)) Console.WriteLine("E-mail inválido! Use o formato exemplo@dominio.com.");
+                if (!Validador.ValidarEmail(email))
+                    Console.WriteLine("E-mail inválido! Use o formato exemplo@dominio.com.");
             } while (!Validador.ValidarEmail(email));
 
             do
             {
-                Console.Write("Telefone (11 dígitos): ");
+                Console.Write("Telefone (somente números, 11 dígitos): ");
                 telefone = Console.ReadLine() ?? "";
-                if (!Validador.ValidarTelefone(telefone)) Console.WriteLine("Telefone inválido! Deve conter 11 números.");
+                if (!Validador.ValidarTelefone(telefone))
+                    Console.WriteLine("Telefone inválido! Deve conter 11 números.");
             } while (!Validador.ValidarTelefone(telefone));
 
             do
             {
-                Console.Write("CPF (11 dígitos): ");
-                cpf = Console.ReadLine() ?? "";
-                if (!Validador.ValidarCPF(cpf)) Console.WriteLine("CPF inválido! Deve conter 11 números.");
-            } while (!Validador.ValidarCPF(cpf));
+                Console.Write("CPF ou CNPJ (somente números): ");
+                documento = Console.ReadLine() ?? "";
+                if (!Validador.ValidarDocumento(documento))
+                    Console.WriteLine("Documento inválido! Use 11 dígitos (CPF) ou 14 dígitos (CNPJ).");
+            } while (!Validador.ValidarDocumento(documento));
 
-            crm.AdicionarCliente(new Cliente(nome, email, telefone, cpf));
+            crm.AdicionarCliente(new Cliente(nome, email, telefone, documento));
         }
 
         static void EditarClienteFlow(CRM crm)
