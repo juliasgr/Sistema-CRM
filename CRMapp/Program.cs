@@ -9,6 +9,8 @@ namespace CRMApp
         {
             CRM crm = new CRM();
             int opcaoMain;
+            List<Oportunidade> listaOportunidades = new List<Oportunidade>();
+
 
             do
             {
@@ -175,6 +177,10 @@ namespace CRMApp
                         _ = int.TryParse(Console.ReadLine(), out int idRem);
                         crm.RemoverOportunidade(idRem);
                         break;
+                    case 5:
+                        Tela.FiltrarOportunidades(crm.Oportunidades);
+                        break;
+
                     case 0:
                         break;
                     default:
@@ -289,6 +295,7 @@ namespace CRMApp
                         _ = int.TryParse(Console.ReadLine(), out int idRem);
                         crm.RemoverAtividade(idRem);
                         break;
+
                     case 0:
                         break;
                     default:

@@ -198,7 +198,7 @@ namespace CRMApp
             if (novaData.HasValue)
                 a.Data = novaData.Value;
 
-            Console.WriteLine("✅ Atividade atualizada!");
+            Console.WriteLine("Atividade atualizada!");
         }
 
         public void RemoverAtividade(int id)
@@ -206,12 +206,12 @@ namespace CRMApp
             var a = Atividades.FirstOrDefault(x => x.Id == id);
             if (a == null)
             {
-                Console.WriteLine("❌ Atividade não encontrada!");
+                Console.WriteLine("Atividade não encontrada!");
                 return;
             }
 
             Atividades.Remove(a);
-            Console.WriteLine("✅ Atividade removida!");
+            Console.WriteLine("Atividade removida!");
         }
     }
 }
